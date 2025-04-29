@@ -1,0 +1,222 @@
+---
+import BaseHead from "../components/BaseHead.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import { SITE_TITLE, SITE_DESCRIPTION } from "../config";
+import Body from "../components/Body.astro";
+import Content from "../components/Content.astro";
+
+// 这里定义技能列表
+const skills = [
+  { name: "R", level: 90 },
+  { name: "C++", level: 70 },
+  { name: "Node.js", level: 80 },
+];
+---
+
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+  </head>
+  <Body>
+    <Header title={SITE_TITLE} />
+    <main class="pt-[56px]">
+      <Content>
+        <section class="flex justify-end mt-4">
+          <a
+            href="https://stats.uptimerobot.com/vBeXBRF7EJ"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center bg-white dark:bg-zinc-600 px-4 py-2 rounded-lg shadow hover:shadow-lg transition cursor-pointer"
+          >
+            <span class="relative w-3 h-3">
+              <span
+                class="absolute top-1/2 left-1/2 w-3 h-3 bg-green-500 rounded-full -translate-x-1/2 -translate-y-1/2"
+              ></span>
+              <span
+                class="absolute top-1/2 left-1/2 w-3 h-3 bg-green-500/30 rounded-full animate-live origin-center"
+              ></span>
+            </span>
+            <span class="text-green-500 font-medium ml-2">Host Available</span>
+          </a>
+        </section>
+
+        <!-- 顶部介绍区 -->
+        <section class="mt-24">
+          <h2 class="text-4xl font-bold">
+            👋 我是<span class="text-blue-600">梅花K</span
+            >（鸭梨山大）
+          </h2>
+          <p class="mt-4 text-lg max-w-xl mx-auto text-gray-600 dark:text-zinc-300">
+            专修苦逼数学&统计，每次final都是天大的事。业余爱好钻研前端设计，最爱玩都市天际线。最大的愿望就是能成为地球探索公司执行董事，让我来执行旅游这件事😄。
+          </p>
+        </section>
+
+        <!-- 我的技能 -->
+        <section class="mt-24">
+          <h2
+            class="font-mplus font-bold text-xl my-4 underline underline-offset-4 decoration-zinc-400 dark:decoration-zinc-700 decoration-4"
+          >
+            学习进度
+          </h2>
+
+          <div class="space-y-4 overflow-hidden">
+            {
+              skills.map((skill) => {
+                const activeBars = Math.round((skill.level / 100) * 20);
+                const inactiveBars = 20 - activeBars;
+
+                // 合并所有小绿条的样式
+                const barClasses =
+                  "w-[5px] h-5 transition-transform duration-100 hover:scale-125 rounded-sm";
+
+                return (
+                  <div class="flex items-center" key={skill.name}>
+                    <h3 class="font-semibold w-32">{skill.name}</h3>
+                    <div class="flex space-x-1">
+                      {Array.from({ length: activeBars }).map((_, index) => (
+                        <div
+                          key={`active-${index}`}
+                          class={`${barClasses} bg-orange-300`}
+                        />
+                      ))}
+                      {Array.from({ length: inactiveBars }).map((_, index) => (
+                        <div
+                          key={`inactive-${index}`}
+                          class={`${barClasses} bg-gray-300`}
+                        />
+                      ))}
+                    </div>
+                  </div>
+                );
+              })
+            }
+          </div>
+        </section>
+
+        <!-- 摄影图集 -->
+        <section class="mt-24">
+          <h2
+            class="font-mplus font-bold text-xl my-4 underline underline-offset-4 decoration-zinc-400 dark:decoration-zinc-700 decoration-4"
+          >
+            随手记录
+          </h2>
+
+          <div class="-mx-8">
+            <div class="flex justify-center gap-4 overflow-x-hidden py-2 group">
+              <img
+                src="https://s21.ax1x.com/2025/04/28/pE73dEt.md.jpg"
+                alt="pE73dEt.jpg"
+                class="w-60 h-auto flex-shrink-0 rounded-xl shadow transition rotate-[-2deg] group-hover:rotate-0"
+              />
+
+              <img
+                src="https://s21.ax1x.com/2025/04/28/pE7339O.md.jpg"
+                alt="pE7339O.jpg"
+                class="w-60 h-auto flex-shrink-0 rounded-xl shadow transition rotate-2 group-hover:rotate-0"
+              />
+
+              <img
+                src="https://s21.ax1x.com/2025/04/28/pE732bn.md.jpg"
+                alt="pE732bn.jpg"
+                class="w-60 h-auto flex-shrink-0 rounded-xl shadow transition rotate-[-2deg] group-hover:rotate-0"
+              />
+            </div>
+          </div>
+        </section>
+
+        <!-- 我的足迹 -->
+        <section class="mt-24">
+          <h2
+            class="font-mplus font-bold text-xl my-4 underline underline-offset-4 decoration-zinc-400 dark:decoration-zinc-700 decoration-4"
+          >
+            我的足迹
+          </h2>
+
+          <div
+            class="w-full h-96 bg-white/50 dark:bg-gray-800/50 rounded-xl border border-gray-300 dark:border-gray-700 flex justify-center overflow-hidden"
+          >
+            <canvas id="cobe" class="w-96 h-full"></canvas>
+          </div>
+        </section>
+
+        <script is:inline type="module">
+          import createGlobe from "https://cdn.skypack.dev/cobe";
+
+          // 配置
+          const markers = [
+            { location: [35.8617, 104.1954], size: 0.04 }, // 中国
+            { location: [3.139, 101.6869], size: 0.04 }, // 马来西亚
+            { location: [22.3193, 114.1694], size: 0.04 }, // 香港
+            { location: [22.1987, 113.5439], size: 0.04 }, // 澳门
+            { location: [23.6978, 120.9605], size: 0.04 }, // 台湾
+            { location: [37.5665, 126.978], size: 0.04 }, // 韩国
+            { location: [35.6762, 139.6503], size: 0.04 }, // 日本
+            { location: [13.7367, 100.5231], size: 0.04 }, // 泰国
+            { location: [-8.65, 115.2167], size: 0.04 }, // 印度尼西亚（巴厘岛）
+            { location: [1.3521, 103.8198], size: 0.04 }, // 新加坡
+            { location: [30.802498, 31.249673], size: 0.04 }, // 埃及
+          ];
+
+          // 初始化
+          let phi = 0;
+          let globe;
+          const initGlobe = () => {
+            const canvas = document.getElementById("cobe");
+            if (!canvas) return;
+
+            const isDark = document.documentElement.classList.contains("dark");
+            const dpr = window.devicePixelRatio || 1;
+            const size = canvas.offsetWidth * dpr;
+
+            return createGlobe(canvas, {
+              devicePixelRatio: dpr,
+              width: size,
+              height: size,
+              phi: 0,
+              theta: 0,
+              diffuse: 1.2,
+              mapSamples: 16000,
+              mapBrightness: 6,
+              baseColor: isDark ? [0.8, 0.8, 0.8] : [1, 1, 1],
+              glowColor: [1, 1, 1],
+              markerColor: isDark ? [0.4, 0.6, 1] : [1, 0.2, 0.6],
+              dark: isDark ? 1 : 0,
+              markers,
+              onRender: (state) => {
+                state.phi = phi;
+                phi += 0.01;
+              },
+            });
+          };
+
+          // 加载后初始化
+          document.addEventListener("DOMContentLoaded", () => {
+            globe = initGlobe();
+
+            // 响应式处理
+            const handleResize = () => {
+              globe?.destroy();
+              globe = initGlobe();
+            };
+
+            // 深色模式切换处理
+            const observer = new MutationObserver(handleResize);
+            observer.observe(document.documentElement, {
+              attributes: true,
+              attributeFilter: ["class"],
+            });
+
+            window.addEventListener("resize", handleResize);
+            window.addEventListener("beforeunload", () => {
+              globe?.destroy();
+              observer.disconnect();
+            });
+          });
+        </script>
+      </Content>
+    </main>
+    <Footer />
+  </Body>
+</html>

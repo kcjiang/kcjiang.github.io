@@ -1,0 +1,49 @@
+---
+import BaseHead from "../components/BaseHead.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import { SITE_TITLE, SITE_DESCRIPTION } from "../config";
+import Body from "../components/Body.astro";
+import Content from "../components/Content.astro";
+import Pageshead from "../components/Pageshead.astro";
+import { Button } from "@headlessui/react";
+
+// 获取所有标签（与Header.astro相同的逻辑）
+const allPosts = Object.values(
+  import.meta.glob("../pages/posts/*.md", { eager: true }),
+);
+const allTags = new Set<string>();
+allPosts.map((post) => {
+  post.frontmatter.tags &&
+    post.frontmatter.tags.map((tag: string) => allTags.add(tag));
+});
+---
+
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+  </head>
+  <Body>
+    <Header title={SITE_TITLE} />
+    <main class="pt-[56px]">
+      <Content>
+        <Pageshead title="Tags" />
+        <section>
+          <div class="mt-4 mb-70 flex flex-wrap justify-center gap-3">
+            {
+              Array.from(allTags).map((tag) => (
+                <a href={`/categories/${tag.toLowerCase()}`}>
+                  <Button className="rounded-lg border border-gray-300 dark:border-gray-700 flex items-center gap-2 py-2 px-4 text-sm md:text-base bg-white/50 dark:bg-gray-800/50 hover:bg-gray-100 dark:hover:bg-gray-700 transition">
+                    {tag}
+                  </Button>
+                </a>
+              ))
+            }
+          </div>
+        </section>
+      </Content>
+    </main>
+    <Footer />
+  </Body>
+</html>

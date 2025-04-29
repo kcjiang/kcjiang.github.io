@@ -1,0 +1,19 @@
+---
+export interface Props {
+  title: string;
+}
+
+const { title }: Props = Astro.props;
+---
+
+<section class="relative h-80 flex justify-center items-center">
+  <div class="text-center drop-shadow-lg shadow-black">
+    <div class="text-4xl sm:text-5xl font-mplus font-medium font-sans">
+      {title}
+    </div>
+    <!-- 模糊背景 -->
+    <span
+      class="bg-blue-500/50 dark:bg-white\/50 absolute inset-0 w-full blur-3xl ml-12 sm:ml-20"
+    ></span>
+  </div>
+</section>

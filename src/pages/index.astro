@@ -1,0 +1,103 @@
+---
+import type { ImageMetadata } from "astro";
+import BaseHead from "../components/BaseHead.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import { SITE_TITLE, SITE_DESCRIPTION, HOMEPAGE_URL } from "../config";
+import Body from "../components/Body.astro";
+import Content from "../components/Content.astro";
+import Indexhead from "../components/Indexhead.astro";
+import { Image } from "astro:assets";
+import CreatedWithSection from "../components/CreatedWithSection.astro";
+
+const images = import.meta.glob<{ default: ImageMetadata }>(
+  "/src/assets/*.{jpeg,jpg,png,gif}",
+);
+console.log("images:", images);
+
+const posts = Object.values(
+  import.meta.glob("./posts/*.md", { eager: true }),
+).sort(
+  (a: any, b: any) =>
+    new Date(b.frontmatter.createdAt).valueOf() -
+    new Date(a.frontmatter.createdAt).valueOf(),
+);
+---
+
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+  </head>
+  <Body>
+    <Header title={SITE_TITLE} />
+    <main class="pt-[56px]">
+      <Content>
+        <!-- 滚动栏 -->
+        <section>
+          <div
+            class="overflow-hidden bg-orange-200 dark:bg-zinc-800 rounded-xl py-4 mt-8"
+          >
+            <div class="flex gap-6 items-center">
+              {
+                Array(4)
+                  .fill(null)
+                  .map(() => (
+                    <div class="animate-scroll whitespace-nowrap will-change-transform">
+                      <a
+                        href="/about"
+                        class="before:content-['•'] before:mr-4 before:text-orange-500 inline-block text-2xl md:text-4xl font-medium"
+                      >
+                        Let's 👋 Work Together
+                      </a>
+                    </div>
+                  ))
+              }
+            </div>
+          </div>
+        </section>
+        <Indexhead />
+        <section class="mt-24">
+          <h2
+            class="font-mplus font-bold text-xl my-4 underline underline-offset-4 decoration-zinc-400 dark:decoration-zinc-700 decoration-4"
+          >
+            最近发布
+          </h2>
+          <ul class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {
+              posts.map((post) => {
+                const heroImageAsset = images[post.frontmatter.heroImage];
+                const heroImageSrc = heroImageAsset
+                  ? heroImageAsset()
+                  : post.frontmatter.heroImage;
+                return (
+                  <li class="text-center mb-4">
+                    <a href={post.url}>
+                      <Image
+                        class="border border-slate-300 dark:border-zinc-700 rounded-xl"
+                        src={heroImageSrc}
+                        width={720}
+                        height={720 / 1.777}
+                        alt="Thumbnail"
+                      />
+                      <div class="mt-3 text-xl font-bold">
+                        {post.frontmatter.title}
+                      </div>
+                      {post.frontmatter.description && (
+                        <div class="opacity-70">
+                          {post.frontmatter.description}
+                        </div>
+                      )}
+                    </a>
+                  </li>
+                );
+              })
+            }
+          </ul>
+        </section>
+        <!-- <CreatedWithSection /> -->
+      </Content>
+    </main>
+    <Footer />
+  </Body>
+</html>

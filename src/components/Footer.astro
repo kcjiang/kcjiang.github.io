@@ -1,0 +1,65 @@
+---
+import { IoPulseOutline } from "react-icons/io5";
+import { IoLogoClosedCaptioning } from "react-icons/io5";
+import { HOMEPAGE_URL } from "../config";
+
+const today = new Date();
+---
+
+<footer class="py-8 px-4">
+  <!-- 版权信息 -->
+  <div class="text-zinc-500 p-4 text-center">
+    &copy; 2019-{today.getFullYear()}
+    <a href={HOMEPAGE_URL}>kaicheng.me</a>. All rights reserved.
+  </div>
+
+  <!-- 网站信息 -->
+  <div class="flex flex-wrap justify-center gap-2 text-xs">
+    <a
+      href="https://astro.build/"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="inline-flex rounded overflow-hidden text-white hover:opacity-90 transition-opacity"
+      title="由 Astro 强力驱动"
+    >
+      <span class="bg-gray-700 px-2 py-1">Powered</span>
+      <span class="bg-purple-600 px-2 py-1">Astro</span>
+    </a>
+    <a
+      href="https://github.com/"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="inline-flex rounded overflow-hidden text-white hover:opacity-90 transition-opacity"
+      title="静态网页托管于 GitHub Pages 和 Coding Pages"
+    >
+      <span class="bg-gray-700 px-2 py-1">Hosted</span>
+      <span class="bg-gray-500 px-2 py-1">GitHub & Coding</span>
+    </a>
+    <a
+      href="https://www.jsdelivr.com/"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="inline-flex rounded overflow-hidden text-white hover:opacity-90 transition-opacity"
+      title="jsDelivr 提供 CDN 加速服务"
+    >
+      <span class="bg-gray-700 px-2 py-1">CDN</span>
+      <span class="bg-orange-500 px-2 py-1">jsDelivr</span>
+    </a>
+    <a
+      href="http://creativecommons.org/licenses/by-nc-sa/4.0/"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="inline-flex rounded overflow-hidden text-white hover:opacity-90 transition-opacity"
+      title="本站点采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可"
+    >
+      <span class="bg-gray-700 flex items-center px-2 py-1"><IoLogoClosedCaptioning /></span>
+      <span class="bg-green-500 px-2 py-1">BY-NC-SA 4.0</span>
+    </a>
+    <div class="inline-flex rounded overflow-hidden text-white">
+      <span class="bg-gray-700 flex items-center px-2 py-1"><IoPulseOutline /></span>
+      <span class="bg-orange-300 px-2 py-1" id="busuanzi_value_site_pv">Loading</span>
+    </div>
+  </div>
+</footer>
+<!-- 从不蒜子切换到 Vercount -->
+<script defer src="https://events.vercount.one/js"></script>
