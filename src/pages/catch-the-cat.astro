@@ -1,0 +1,75 @@
+---
+import BaseHead from "../components/BaseHead.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import { SITE_TITLE, SITE_DESCRIPTION } from "../config";
+import Body from "../components/Body.astro";
+import Content from "../components/Content.astro";
+---
+
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+    <script
+      is:inline
+      src="https://cdn.jsdelivr.net/npm/phaser@3.88.2/dist/phaser.min.js"
+    ></script>
+    <script is:inline src="/js/catch-the-cat.js"></script>
+  </head>
+  <Body>
+    <Header title={SITE_TITLE} />
+    <main class="pt-[56px]">
+      <Content>
+        <section class="md:hidden">
+          <div
+            class="overflow-hidden bg-orange-200 dark:bg-zinc-800 rounded-xl py-4 mt-8"
+          >
+            <div class="flex gap-6 items-center">
+              {
+                Array(5)
+                  .fill(null)
+                  .map(() => (
+                    <div class="animate-scroll whitespace-nowrap will-change-transform">
+                      <span class="before:content-['•'] before:mr-4 before:text-orange-500 text-xl">
+                        请使用桌面端访问
+                      </span>
+                    </div>
+                  ))
+              }
+            </div>
+          </div>
+        </section>
+        <section class="mt-24 flex justify-center overflow-hidden">
+          <div id="catch-the-cat"></div>
+          <script>
+            window.game = new CatchTheCatGame({
+              w: 11,
+              h: 11,
+              r: 20,
+              initialWallCount: 8,
+              backgroundColor: 0xfff7ed,
+              parent: "catch-the-cat",
+              statusBarAlign: "center",
+              credit: " ",
+            });
+          </script>
+        </section>
+        <section class="mt-24">
+          <p>
+            游戏的思路和小猫的图片来源于
+            <a
+              href="https://www.gamedesign.jp/flash/chatnoir/chatnoir.html"
+              class="text-blue-600 underline hover:text-blue-800"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              www.gamedesign.jp
+            </a>，原来的游戏名叫 Chat Noir，我尝试使用 JavaScript 重写实现。
+          </p>
+        </section>
+      </Content>
+    </main>
+    <Footer />
+  </Body>
+</html>

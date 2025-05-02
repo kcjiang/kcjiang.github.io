@@ -8,9 +8,13 @@ import Content from "../components/Content.astro";
 
 // 这里定义技能列表
 const skills = [
-  { name: "R", level: 90 },
   { name: "C++", level: 70 },
-  { name: "Node.js", level: 80 },
+  { name: "JavaScript", level: 60 },
+  { name: "MySQL", level: 80 },
+  { name: "php", level: 40 },
+  { name: "Python", level: 65 },
+  { name: "React", level: 50 },
+  { name: "R Language", level: 95 },
 ];
 ---
 
@@ -49,7 +53,7 @@ const skills = [
             >（鸭梨山大）
           </h2>
           <p class="mt-4 text-lg max-w-xl mx-auto text-gray-600 dark:text-zinc-300">
-            专修苦逼数学&统计，每次final都是天大的事。业余爱好钻研前端设计，最爱玩都市天际线。最大的愿望就是能成为地球探索公司执行董事，让我来执行旅游这件事😄。
+            人类的80亿分之一，数学&统计专修，每次final都是天大的事。业余爱好钻研前端设计，最爱玩都市天际线。
           </p>
         </section>
 
@@ -58,10 +62,10 @@ const skills = [
           <h2
             class="font-mplus font-bold text-xl my-4 underline underline-offset-4 decoration-zinc-400 dark:decoration-zinc-700 decoration-4"
           >
-            学习进度
+            修炼进度
           </h2>
 
-          <div class="space-y-4 overflow-hidden">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 overflow-hidden">
             {
               skills.map((skill) => {
                 const activeBars = Math.round((skill.level / 100) * 20);

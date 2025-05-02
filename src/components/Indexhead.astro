@@ -1,25 +1,21 @@
 ---
-import {
-  IoMailUnreadOutline,
-  IoDocumentAttachOutline,
-} from "react-icons/io5";
+import { IoMailUnreadOutline, IoDocumentAttachOutline } from "react-icons/io5";
 ---
 
 <section class="mt-24">
-  <h1 class="text-3xl md:text-4xl font-bold mb-4">Hey! I'm Casey</h1>
-
-  <h2 class="text-xl md:text-2xl mb-4">
-    <span> 「资深干饭人，易晕体质，但特别爱折腾。」 </span>
-    <span>
-      从<a href="/about" class="font-bold underline">这里</a>可以了解我更多。这个博客始于2019年，从WordPress到Hexo，如今已迁移至Astro+Tailwind CSS，几经修缮目前源码已在GitHub开放，欢迎围观。
-    </span>
+  <div>
+    <p class="text-3xl md:text-4xl font-bold mb-4">Hey! I'm Casey</p>
+    <p class="text-xl mb-4">
+      博客已从 Hexo 迁移至 Astro + Tailwind CSS，目前源码已在 GitHub
+      开放，欢迎围观。
+    </p>
     <span
-      class="block min-h-[4.5rem] text-orange-500 dark:text-orange-400"
+      class="block min-h-[4.5rem] text-2xl text-orange-500 dark:text-orange-400"
       id="dynamic-text"
     >
-      taking special care in every
+      并请诸安
     </span>
-  </h2>
+  </div>
 
   <div class="flex gap-4 mt-8 flex-wrap">
     <a
@@ -49,6 +45,7 @@ import {
       "学海无涯，乘风破浪，过千帆。",
       "欲买桂花同载酒，终不似，少年游。",
       "暌违日久，拳念殊殷。",
+      "海内存知己，天涯若比邻。",
     ];
 
     let currentPhrase = 0;

@@ -8,7 +8,7 @@ createdAt: 1675759815000
 updatedAt: 1675759815000
 tags:
   - 微分
-heroImage: /posts/laplace-transform-visualized_thumbnail.jpg
+heroImage: /posts/fourier-transform-visualized_thumbnail.jpg
 ---
 
 本文作为 UM-SIN2004 课程内容的归纳总结，只讨论二阶偏微分方程边值问题的分离变量法。当然，除了分离变量法还有极坐标系、格林函数法等等。
