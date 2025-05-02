@@ -1,20 +1,29 @@
 ---
-import { IoMailUnreadOutline, IoDocumentAttachOutline } from "react-icons/io5";
+import {
+  IoMailUnreadOutline,
+  IoDocumentAttachOutline,
+  IoLogoReact,
+} from "react-icons/io5";
 ---
 
 <section class="mt-24">
-  <div>
-    <p class="text-3xl md:text-4xl font-bold mb-4">Hey! I'm Casey</p>
-    <p class="text-xl mb-4">
-      博客已从 Hexo 迁移至 Astro + Tailwind CSS，目前源码已在 GitHub
-      开放，欢迎围观。
-    </p>
-    <span
-      class="block min-h-[4.5rem] text-2xl text-orange-500 dark:text-orange-400"
-      id="dynamic-text"
-    >
-      并请诸安
-    </span>
+  <div class="relative">
+    <div class="z-10 space-y-4">
+      <p class="text-3xl md:text-4xl font-bold">Hey! I'm Casey</p>
+      <p class="text-xl">
+        博客已从 Hexo 迁移至 Astro + Tailwind CSS，目前源码已在 GitHub
+        开放，欢迎围观。
+      </p>
+      <div
+        class="min-h-[4.5rem] text-2xl text-orange-500 dark:text-orange-400"
+        id="dynamic-text"
+      >
+        并请诸安
+      </div>
+    </div>
+    <IoLogoReact
+      className="absolute right-0 bottom-0 text-orange-300 dark:text-orange-500/50 text-[14rem] opacity-20 z-0 select-none hidden md:flex"
+    />
   </div>
 
   <div class="flex gap-4 mt-8 flex-wrap">

@@ -1,7 +1,7 @@
 import { Menu, MenuItems, MenuButton, Transition } from '@headlessui/react'
 import React, { Fragment } from 'react'
 import { IoMenu } from 'react-icons/io5'
-import { IoLogoGithub } from "react-icons/io5"
+import { IoGameController } from "react-icons/io5"
 import DropdownMenuItem from './DropdownMenuItem'
 
 interface NavItems {
@@ -15,8 +15,7 @@ const NavItems = [
   { label: '首页', href: '/' },
   { label: '分类', href: '/cate' },
   { label: '关于', href: '/about' },
-  { label: '抓住小猫', href: '/catch-the-cat' },
-  { label: 'Source', href: 'https://github.com/kai2cheng', icon: <IoLogoGithub />, target: '_blank' }
+  { label: '抓住小猫', href: '/catch-the-cat', icon: <IoGameController /> }
 ]
 
 export default function DropdownMenu() {
