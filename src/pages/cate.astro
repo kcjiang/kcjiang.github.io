@@ -34,7 +34,7 @@ allPosts.map((post) => {
             {
               Array.from(allTags).map((tag) => (
                 <a href={`/categories/${tag.toLowerCase()}`}>
-                  <Button className="rounded-lg border border-gray-300 dark:border-gray-700 flex items-center gap-2 py-2 px-4 text-sm md:text-base bg-white/50 dark:bg-gray-800/50 hover:bg-gray-100 dark:hover:bg-gray-700 transition">
+                  <Button className="rounded-lg border border-slate-300 dark:border-zinc-700 flex items-center gap-2 py-2 px-4 text-sm md:text-base bg-white/50 dark:bg-gray-800/50 hover:bg-gray-100 dark:hover:bg-gray-700 transition">
                     {tag}
                   </Button>
                 </a>
