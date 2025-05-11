@@ -1,0 +1,108 @@
+---
+import BaseHead from "../components/BaseHead.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import { SITE_TITLE, SITE_DESCRIPTION } from "../config";
+import Body from "../components/Body.astro";
+import Content from "../components/Content.astro";
+import Pageshead from "../components/Pageshead.astro";
+---
+
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+  </head>
+  <Body>
+    <Header title={SITE_TITLE} />
+    <main class="pt-[56px]">
+      <Content>
+        <Pageshead title="友链" />
+        <section>
+          <h2
+            class="font-mplus font-bold text-xl my-4 underline underline-offset-4 decoration-zinc-400 dark:decoration-zinc-700 decoration-4"
+          >
+            活跃链接
+          </h2>
+
+          <div class="grid gap-3 md:grid-cols-2">
+            <a
+              href="https://blog.anheyu.com/"
+              class="flex rounded-lg bg-white shadow-md transition hover:bg-pink-50 dark:bg-gray-800 dark:hover:bg-indigo-900 overflow-hidden"
+            >
+              <div class="flex h-20 w-20 shrink-0 bg-gray-200 dark:bg-gray-700">
+                <img
+                  src="https://npm.elemecdn.com/anzhiyu-blog-static@1.0.4/img/avatar.jpg"
+                  loading="lazy"
+                  alt="Doge"
+                  class="h-full w-full object-cover"
+                />
+              </div>
+              <div class="p-4">
+                <h3 class="text-sm font-bold line-clamp-1">安知鱼</h3>
+                <p
+                  class="mt-2 text-xs text-gray-600 dark:text-gray-400 line-clamp-1"
+                >
+                  生活明朗，万物可爱
+                </p>
+              </div>
+            </a>
+
+            <a
+              href="https://xaoxuu.com"
+              class="flex rounded-lg bg-white shadow-md transition hover:bg-pink-50 dark:bg-gray-800 dark:hover:bg-indigo-900 overflow-hidden"
+            >
+              <div class="flex h-20 w-20 shrink-0 bg-gray-200 dark:bg-gray-700">
+                <img
+                  src="https://bu.dusays.com/2021/09/24/2f74810ceb3d3.png"
+                  loading="lazy"
+                  alt="Doge"
+                  class="h-full w-full object-cover"
+                />
+              </div>
+              <div class="p-4">
+                <h3 class="text-sm font-bold line-clamp-1">xaoxuu</h3>
+                <p
+                  class="mt-2 text-xs text-gray-600 dark:text-gray-400 line-clamp-1"
+                >
+                  没有简介
+                </p>
+              </div>
+            </a>
+
+            <a
+              href="https://2heng.xin"
+              class="flex rounded-lg bg-white shadow-md transition hover:bg-pink-50 dark:bg-gray-800 dark:hover:bg-indigo-900 overflow-hidden"
+            >
+              <div class="flex h-20 w-20 shrink-0 bg-gray-200 dark:bg-gray-700">
+                <img
+                  src="https://gravatar.fghrsh.net/avatar/cd2b3a164c977539712929f66cad335c?s=300&d=mm&r=G"
+                  loading="lazy"
+                  alt="Doge"
+                  class="h-full w-full object-cover"
+                />
+              </div>
+              <div class="p-4">
+                <h3 class="text-sm font-bold line-clamp-1">Mashiro</h3>
+                <p
+                  class="mt-2 text-xs text-gray-600 dark:text-gray-400 line-clamp-1"
+                >
+                  樱花庄的白猫
+                </p>
+              </div>
+            </a>
+          </div>
+        </section>
+        <section class="mt-24">
+          <h2
+            class="font-mplus font-bold text-xl my-4 underline underline-offset-4 decoration-zinc-400 dark:decoration-zinc-700 decoration-4"
+          >
+            添加友链
+          </h2>
+          暂未开放
+        </section>
+      </Content>
+    </main>
+    <Footer />
+  </Body>
+</html>
