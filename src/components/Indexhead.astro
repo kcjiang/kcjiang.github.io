@@ -1,52 +1,116 @@
 ---
+import StickerSmiley from "./icons/sticker-smiley";
+import StickerCode from "./icons/sticker-code";
+import StickerDesign from "./icons/sticker-design";
+import StickerArt from "./icons/sticker-art";
 import {
   IoMailUnreadOutline,
-  IoDocumentAttachOutline,
+  IoLogoLinkedin,
+  IoLogoWechat,
+  IoLogoInstagram,
   IoLogoReact,
 } from "react-icons/io5";
+
+const socialLinks = [
+  {
+    href: "mailto:jiang@kaicheng.me",
+    ariaLabel: "Email",
+    icon: IoMailUnreadOutline,
+  },
+  {
+    href: "/linkedin",
+    ariaLabel: "LinkedIn",
+    icon: IoLogoLinkedin,
+  },
+  {
+    href: "https://www.instagram.com/kaicheng.19",
+    ariaLabel: "Instagram",
+    icon: IoLogoInstagram,
+  },
+  {
+    href: "#",
+    ariaLabel: "WeChat",
+    icon: IoLogoWechat,
+  },
+];
 ---
 
 <section class="mt-24">
   <div class="relative">
-    <div class="z-10 space-y-4">
-      <p class="text-3xl md:text-4xl font-bold">Hej! I'm Casey</p>
-      <p class="text-xl">
-        博客已从 Hexo 迁移至 Astro + Tailwind CSS，目前源码已在 GitHub
-        开放，欢迎围观。
+    <div class="z-10 space-y-6">
+      <h1 class="cursor-default text-2xl font-bold sm:text-3xl md:text-4xl">
+        <div class="group inline-block">
+          Hej! <StickerSmiley />
+        </div>
+        I'm Kaicheng, 正在学习数学和统计，同时擅长
+        <div class="group inline-block">
+          <StickerCode />
+          各种代码，
+        </div>
+        <div class="group inline-block">
+          <StickerDesign />
+          网页设计
+        </div>
+        和
+        <div class="group inline-block">
+          <StickerArt />
+          行为艺术。
+        </div>
+      </h1>
+      <p
+        class="text-base sm:text-lg md:text-xl text-gray-700 dark:text-gray-300"
+      >
+        这个个人网站是我在互联网上的一个小小空间，我希望在这里与大家分享我的学习、兴趣和灵感，而无需迎合社交媒体平台的算法或遵循任何其他规则。
       </p>
       <div
-        class="min-h-[4.5rem] text-2xl text-orange-500 dark:text-orange-400"
+        class="min-h-[4.5rem] text-lg sm:text-xl md:text-2xl text-orange-500 dark:text-orange-400"
         id="dynamic-text"
       >
         并请诸安
       </div>
     </div>
     <IoLogoReact
-      className="absolute right-0 bottom-0 text-orange-300 dark:text-orange-500/50 text-[14rem] opacity-20 z-0 select-none hidden md:flex"
+      className="absolute right-0 bottom-0 text-orange-300/50 dark:text-orange-500/30 text-[14rem] opacity-20 z-0 select-none hidden md:flex"
     />
   </div>
 
-  <div class="flex gap-4 mt-8 flex-wrap">
-    <a
-      class="rounded-lg border border-slate-300 dark:border-zinc-700 flex items-center gap-2 py-2 px-4 text-sm md:text-base bg-white/50 dark:bg-gray-800/50 hover:bg-gray-100 dark:hover:bg-gray-700 transition"
-      href="mailto:jiang@kaicheng.me"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      <IoMailUnreadOutline className="size-5" />
-      Email
-    </a>
-
-    <a
-      class="rounded-lg border border-slate-300 dark:border-zinc-700 flex items-center gap-2 py-2 px-4 text-sm md:text-base bg-white/50 dark:bg-gray-800/50 hover:bg-gray-100 dark:hover:bg-gray-700 transition"
-      href="/cv"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      <IoDocumentAttachOutline className="size-5" />
-      我的简历
-    </a>
+  <div class="flex gap-4 mt-8">
+    {
+      socialLinks.map(({ href, ariaLabel, icon: IconSelect }) => (
+        <a
+          href={ariaLabel === "WeChat" ? undefined : href}
+          target="_blank"
+          rel={href.startsWith("mailto:") ? undefined : "noopener noreferrer"}
+          aria-label={ariaLabel}
+          class="w-10 h-10 rounded-full border border-slate-300 dark:border-zinc-700 flex items-center justify-center bg-white/50 dark:bg-gray-800/50 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors relative group"
+          ontouchstart={
+            ariaLabel === "WeChat"
+              ? "this.classList.toggle('active')"
+              : undefined
+          }
+        >
+          <IconSelect className="size-5 group-hover:scale-110 transition-transform" />
+          {ariaLabel === "WeChat" && (
+            <img
+              src="/wechat-qr.png"
+              alt="WeChat QR Code"
+              loading="lazy"
+              class="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 w-32 max-w-none rounded shadow-lg border border-slate-300 dark:border-zinc-700 opacity-0 md:group-hover:opacity-100 active:opacity-100 md:active:opacity-0 transition-opacity pointer-events-none z-20"
+            />
+          )}
+        </a>
+      ))
+    }
   </div>
+
+  <style>
+    /* 移动端点击显示二维码 */
+    @media (max-width: 767px) {
+      .active img {
+        opacity: 1 !important;
+      }
+    }
+  </style>
 
   <script is:inline>
     const phrases = [
@@ -76,5 +140,14 @@ import {
     }
 
     changePhrase();
+
+    // 点击页面其他区域关闭二维码
+    document.addEventListener("click", (e) => {
+      if (!e.target.closest(".group")) {
+        document
+          .querySelectorAll(".group")
+          .forEach((el) => el.classList.remove("active"));
+      }
+    });
   </script>
 </section>
