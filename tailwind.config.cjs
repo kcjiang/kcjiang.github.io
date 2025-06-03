@@ -5,11 +5,12 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        mplus: ["'proxima-soft'", 'Verdana', 'sans-serif']
+        mplus: ["'proxima-soft'", 'Verdana', 'sans-serif'],            // 由链接引入Proxima字体
+        smiley: ['Smiley Sans', 'sans-serif'],                         // 文件定义得意黑字体
       },
       animation: {
-        scroll: 'scroll 10s linear infinite', // 横向滚动动画
-        live: 'live 1s ease-in-out infinite', // 圆点扩散动画
+        scroll: 'scroll 10s linear infinite',                          // 横向滚动动画
+        live: 'live 1s ease-in-out infinite',                          // 圆点扩散动画
       },
       keyframes: {
         scroll: {
